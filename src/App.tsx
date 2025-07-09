@@ -1,11 +1,11 @@
-
-import { Button } from "./components/ui/button";
+import { Outlet } from "react-router";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
     <>
-      <h1>basic redux app</h1>
-      <Button>Test</Button>
+      <Navbar />
+      <Outlet />
     </>
   );
 }
