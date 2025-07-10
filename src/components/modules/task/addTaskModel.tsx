@@ -31,14 +31,18 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { addTask } from "@/redux/features/task/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 
-export default function AddTask() {
+export default function AddTaskModel() {
   const form = useForm();
+  const dispatch = useAppDispatch();
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(addTask(data));
   };
   return (
     <Dialog>
@@ -105,17 +109,17 @@ export default function AddTask() {
               />
               <FormField
                 control={form.control}
-                name="dob"
+                name="due"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Date of birth</FormLabel>
+                    <FormLabel> dueDate</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
                             variant={"outline"}
                             className={cn(
-                              "w-[240px] pl-3 text-left font-normal",
+                              " pl-3 text-left font-normal",
                               !field.value && "text-muted-foreground"
                             )}
                           >
@@ -133,9 +137,9 @@ export default function AddTask() {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
+                          //   disabled={(date) =>
+                          //     date > new Date() || date < new Date("1900-01-01")
+                          //   }
                           captionLayout="dropdown"
                         />
                       </PopoverContent>

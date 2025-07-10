@@ -1,4 +1,4 @@
-import AddTask from "@/components/modules/task/addTask";
+import AddTask from "@/components/modules/task/addTaskModel";
 import TaskCard from "@/components/modules/task/taskCard";
 import { selectFilter, selectTasks } from "@/redux/features/task/taskSlice";
 import { useAppSelector } from "@/redux/hook";
