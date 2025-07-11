@@ -3,17 +3,21 @@ import { Button } from "../../ui/button";
 import { Checkbox } from "../../ui/checkbox";
 import type { ITask } from "@/types";
 import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   deleteTask,
   toggleCompleteState,
 } from "@/redux/features/task/taskSlice";
+import { selectUsers } from "@/redux/features/user/userSlice";
 
 export interface IProps {
   task: ITask;
 }
 export default function TaskCard({ task }: IProps) {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUsers);
+
+  const assignedUser = user.find((user) => user.id === task.assignedTo);
 
   return (
     <div className="border border-gray-200 px-6 py-4 rounded-xl shadow-sm hover:shadow-md transition">
@@ -48,6 +52,7 @@ export default function TaskCard({ task }: IProps) {
           />
         </div>
       </div>
+      <p>AssignedTo - {assignedUser ? assignedUser.name : "No One"}</p>
       <p>{task.description}</p>
     </div>
   );

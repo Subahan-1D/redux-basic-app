@@ -26,7 +26,6 @@ export default function UserCard({ user }: IProps) {
           >
             <Trash className="w-4 h-4" />
           </Button>
-          <Checkbox className="w-5 h-5 border-gray-300 rounded" />
         </div>
       </div>
     </div>
